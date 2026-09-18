@@ -9,7 +9,10 @@ export const apiBaseUrl = codespaceName
   : 'http://localhost:8000'
 
 export async function fetchCollection(endpoint) {
-  const response = await fetch(`${apiBaseUrl}/api/${endpoint}/`)
+  const path = endpoint.startsWith('/api/')
+    ? endpoint
+    : `/api/${endpoint.replace(/^\/+|\/+$/g, '')}/`
+  const response = await fetch(`${apiBaseUrl}${path}`)
   if (!response.ok) {
     throw new Error(`Request failed with status ${response.status}`)
   }
