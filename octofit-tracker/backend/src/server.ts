@@ -1,4 +1,5 @@
 import express from 'express';
+import './config/database.js';
 import apiRouter from './routes/api.js';
 
 const app = express();
